@@ -121,7 +121,7 @@ function reset() {
 
 // Initialize
 input.value =
-  "Welcome to LyricMini\nCompact & Powerful\nSpotify Styled Interface\nPaste your lyrics here\nClick lines to seek\nEnjoy the rhythm\nCreated with Flow";
+  "Welcome to Symplyi•nii Lyrical\nPaste your lyrics here\nClick lines to seek\nEnjoy the rhythm\nCreated with Flow";
 saveLyrics();
 
 // Gradient Backdrop Logic
