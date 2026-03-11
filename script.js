@@ -3,7 +3,7 @@ let currentIndex = -1;
 let isPlaying = false;
 let currentTime = 0;
 let timer = null;
-const PACE = 3; // Seconds per line
+
 
 const viewport = document.getElementById("lyrics-viewport");
 const playIcon = document.getElementById("play-icon");
@@ -12,6 +12,51 @@ const timeCurrent = document.getElementById("time-current");
 const timeTotal = document.getElementById("time-total");
 const studio = document.getElementById("studio-overlay");
 const input = document.getElementById("lyric-input");
+
+
+// Gradient Backdrop Logic
+function togglebackgroundgradient() {
+  const modal = document.getElementById("gradient-overlay");
+  const backdrop = document.getElementById("backdrop");
+  modal.classList.toggle("active");
+  backdrop.classList.toggle("active");
+}
+
+function updateGradientPreview() {
+  const start = document.getElementById("color-start").value;
+  const end = document.getElementById("color-end").value;
+  const angle = document.getElementById("gradient-angle").value;
+  const pacing = document.getElementById("pacing-angle").value;
+  const preview = document.getElementById("gradient-preview");
+
+  PACE = parseFloat(pacing);
+  timeTotal.textContent = formatTime(lyrics.length * PACE);
+
+  document.getElementById("hex-start").innerText = start.toUpperCase();
+  document.getElementById("hex-end").innerText = end.toUpperCase();
+  document.getElementById("swatch-start").style.background = start;
+  document.getElementById("swatch-end").style.background = end;
+  document.getElementById("angle-value").innerText = angle + "°";
+  document.getElementById("span-value").innerText = pacing;
+
+  preview.style.background = `linear-gradient(${angle}deg, ${start}, ${end})`;
+}
+
+function saveGradient() {
+  const start = document.getElementById("color-start").value;
+  const end = document.getElementById("color-end").value;
+  const angle = document.getElementById("gradient-angle").value;
+  pacing = document.getElementById('pacing-angle').value;
+  
+
+  document.body.style.background = `linear-gradient(${angle}deg, ${start}, ${end})`;
+  togglebackgroundgradient();
+}
+
+
+let PACE = parseFloat(document.getElementById('pacing-angle').value); // Seconds per line
+
+
 
 function toggleStudio() {
   studio.classList.toggle("active");
@@ -121,37 +166,6 @@ function reset() {
 
 // Initialize
 input.value =
-  "Welcome to Symplyi•nii Lyrical\nPaste your lyrics here\nClick lines to seek\nEnjoy the rhythm\nCreated with Flow";
-saveLyrics();
-
-// Gradient Backdrop Logic
-function togglebackgroundgradient() {
-  const modal = document.getElementById("gradient-overlay");
-  const backdrop = document.getElementById("backdrop");
-  modal.classList.toggle("active");
-  backdrop.classList.toggle("active");
-}
-
-function updateGradientPreview() {
-  const start = document.getElementById("color-start").value;
-  const end = document.getElementById("color-end").value;
-  const angle = document.getElementById("gradient-angle").value;
-  const preview = document.getElementById("gradient-preview");
-
-  document.getElementById("hex-start").innerText = start.toUpperCase();
-  document.getElementById("hex-end").innerText = end.toUpperCase();
-  document.getElementById("swatch-start").style.background = start;
-  document.getElementById("swatch-end").style.background = end;
-  document.getElementById("angle-value").innerText = angle + "°";
-
-  preview.style.background = `linear-gradient(${angle}deg, ${start}, ${end})`;
-}
-
-function saveGradient() {
-  const start = document.getElementById("color-start").value;
-  const end = document.getElementById("color-end").value;
-  const angle = document.getElementById("gradient-angle").value;
-
-  document.body.style.background = `linear-gradient(${angle}deg, ${start}, ${end})`;
-  togglebackgroundgradient();
-}
+  "Welcome to Symple Lyrical\nPaste your lyrics here\nClick lines to seek\nEnjoy the rhythm\nCreated with Flow";
+input.style = 'font-family: monospace; font-weight: bold; '
+  saveLyrics();
