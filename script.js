@@ -133,7 +133,7 @@ function highlight(index) {
   const el = document.getElementById(`line-${index}`);
   if (el) {
     el.classList.add("active");
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 }
 
